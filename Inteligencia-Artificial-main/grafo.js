@@ -157,7 +157,7 @@ class Grafo{
     }
   }
   colorearCamino(path) {
-    stroke(color(255,0,0));
+    stroke(color(255,255,0));
     strokeWeight(edge_width);
     line(margin_size + this.lista[path[0]].x*(edge_length+node_size), margin_size + this.lista[path[0]].y*(edge_length+node_size),
     margin_size + this.lista[path[1]].x*(edge_length+node_size), margin_size + this.lista[path[1]].y*(edge_length+node_size))
@@ -166,7 +166,7 @@ class Grafo{
     strokeWeight(node_size);
     point(margin_size + this.lista[path[0]].x*(edge_length+node_size), margin_size + this.lista[path[0]].y*(edge_length+node_size));
     
-    stroke(color(255,0,0));
+    stroke(color(255,255,0));
     textSize(node_size / 1.3);
     for (let i = 1; i < path.length - 1; i++){
       let x = margin_size + this.lista[path[i]].x*(edge_length+node_size);
@@ -235,7 +235,7 @@ function amplitud(lista_ady,nodo_inicial,nodo_final) {
       let lista_padre = L[0];
 
       // colorear dicho nodo de azul
-      stroke(color(30,100,200));
+      stroke(color(87,35,100));
       strokeWeight(node_size);
       point(margin_size + lista_ady[L[0][0]].x*(edge_length+node_size), margin_size + lista_ady[L[0][0]].y*(edge_length+node_size));  
 
