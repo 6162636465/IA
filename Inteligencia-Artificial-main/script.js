@@ -1,12 +1,12 @@
-let node_size = 20;       // tamaño de los nodos en pixeles
-let edge_length = 40;     // tamaño de los vertices en px
-let edge_width = 2;       // ancho de los vertices en px
-let N = 10, M = 10;     // grafo de N filas x M columnas
+let node_size = 22;       // tamaño de los nodos en pixeles
+let edge_length = 42;     // tamaño de los vertices en px
+let edge_width = 3;       // ancho de los vertices en px
+let N = 13, M = 13;     // grafo de N filas x M columnas
 let margin_size = 1.5 * node_size;
 let canvas_width = (M+2)*node_size+(M-1)*edge_length;
 let canvas_height = (N+2)*node_size+(N-1)*edge_length;
 let canvas_margin_x = 250;
-let canvas_margin_y = 100;
+let canvas_margin_y = 1;
 
 let inicio = -1;
 let final = -1;
@@ -19,6 +19,8 @@ function setup() {
   // dibujar canvas
   let canvas = createCanvas(canvas_width,canvas_height);
   canvas.position(canvas_margin_x,canvas_margin_y);
+  //COLOR DE canvas naranja
+  background(255, 128, 0)
 
   miGrafo.dibujarGrafo();
 
@@ -157,12 +159,6 @@ function buscarPath() {
         break;
       case 4:
         res = mejorPrimero(miGrafo.lista,inicio,final);
-        miGrafo.colorearCamino(res[0]);
-        hay_path = true;
-        break;
-      case 5:
-        res = newAstar(miGrafo.lista,inicio,final);
-        console.log(res);
         miGrafo.colorearCamino(res[0]);
         hay_path = true;
         break;

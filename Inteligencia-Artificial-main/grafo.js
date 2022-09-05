@@ -235,7 +235,7 @@ function amplitud(lista_ady,nodo_inicial,nodo_final) {
       let lista_padre = L[0];
 
       // colorear dicho nodo de azul
-      stroke(color(87,35,100));
+      stroke(color(30,100,200));
       strokeWeight(node_size);
       point(margin_size + lista_ady[L[0][0]].x*(edge_length+node_size), margin_size + lista_ady[L[0][0]].y*(edge_length+node_size));  
 
@@ -259,6 +259,7 @@ function amplitud(lista_ady,nodo_inicial,nodo_final) {
   }
   return [[],pasos];
 }
+
 
 function distance(nodo_i,nodo_o) {
   return Math.sqrt(Math.pow(nodo_o.x - nodo_i.x,2) + Math.pow(nodo_o.y - nodo_i.y,2));
@@ -361,64 +362,6 @@ function mejorPrimero(lista_ady,nodo_inicial,nodo_final) {
       // meter todos los paths de hijos a L en ese orden
       for(let i = 0; i < hijos.length; i++){
         L.splice(0,0,hijos[i]);
-      }
-    }
-  }
-  return [[],pasos];
-}
-
-function aStar(lista_ady,nodo_inicial,nodo_final) {
-  let L = [[nodo_inicial]];
-  let L_dist = [0];
-
-  let pasos = 0;
-  while (L.length > 0){
-    pasos++;
-    if (L[0][0] == nodo_final){
-      return [L[0],pasos];
-    }else{
-      let lista_padre = L[0];
-      L.splice(0,1);
-      let dis_padre = L_dist[0];
-      L_dist.splice(0,1);
-      // lista ordenada que guardara los hijos con su camino 
-      // segun su distancia al objetivo y el peso de su camino desde el inicio
-      let hijos = [];
-      // voy por cada hijo
-      for (let i = 0; i < lista_ady[lista_padre[0]].e.length; i++){
-        let esta_repetido = false;
-        let id_hijo = lista_ady[lista_padre[0]].e[i].id;
-        let peso_hijo = lista_ady[lista_padre[0]].e[i].peso;
-        for (let j = 0; j < lista_padre.length; j++){
-          if (id_hijo == lista_padre[j]){
-            esta_repetido = true;
-            break;
-          }
-        }
-        // si escogerlo no genera un bucle entonces lo guardo en la lista de hijos
-        if (esta_repetido == false){
-          let lista_hijo = [id_hijo];
-          lista_hijo = lista_hijo.concat(lista_padre);
-          hijos.push([lista_hijo,peso_hijo]); // añadimos al final de la lista en este caso
-        }
-      }
-      // ordenar la lista de hijos de acuerdo a:
-      // longitud del camino desde el inicio + distancia al objetivo
-      hijos.sort((a, b) => {
-        let f_a = distance(lista_ady[a[0][0]],lista_ady[nodo_final]) + a[1] + dis_padre;
-        let f_b = distance(lista_ady[b[0][0]],lista_ady[nodo_final]) + b[1] + dis_padre;
-        if (f_a < f_b) {
-          return 1;
-        }
-        if (f_a > f_b) {
-          return -1;
-        }
-        return 0;
-      });
-      // meter todos los paths de hijos a L en ese orden
-      for(let i = 0; i < hijos.length; i++){
-        L.splice(0,0,hijos[i][0]);
-        L_dist.splice(0,0,hijos[i][1]);
       }
     }
   }
